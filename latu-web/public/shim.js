@@ -4,6 +4,11 @@
   var U = window.LATU_USER || {};
   // Local cache belongs to one account; clear it if a different user signs in on this browser.
   try {
+    // Server data was reset or re-imported since this browser cached it: drop the cache.
+    if (U.epoch && localStorage.getItem('latu-epoch') !== U.epoch) {
+      ['latu-v2', 'latu-v1'].forEach(function (k) { localStorage.removeItem(k); });
+      localStorage.setItem('latu-epoch', U.epoch);
+    }
     if (localStorage.getItem('latu-owner') !== U.id) {
       ['latu-v2', 'latu-v1'].forEach(function (k) { localStorage.removeItem(k); });
       localStorage.setItem('latu-owner', U.id || '');
@@ -28,6 +33,7 @@
         doc: function (id) {
           return {
             set: function (data) {
+              if (window.__latuWiping) return Promise.resolve();
               return fetch('/api/docs/' + encodeURIComponent(id), { method: 'PUT', credentials: 'same-origin', keepalive: JSON.stringify(data).length < 60000, headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) }).then(check).then(function () {});
             }
           };
@@ -79,6 +85,20 @@
   var caps = { db: db, user: user, sample: U.ai ? sample : null, downloads: null };
   window.claude = { use: function (name) { return Promise.resolve(caps[name] || null); } };
 
+  // Wipe: delete every saved document for this account, clear the local cache and start fresh.
+  document.addEventListener('click', function (e) {
+    var b = e.target && e.target.closest && e.target.closest('[data-act="wipe"]');
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    if (!window.confirm('Kustutan KÕIK andmed: treeningud, toidu, kaalu, seisundid, plaani muudatused, päevakava, tulemused ja treeneri vestluse. Seda ei saa tagasi võtta. Jätkan?')) return;
+    b.disabled = true; b.textContent = 'Kustutan…';
+    window.__latuWiping = true;
+    fetch('/api/docs', { method: 'DELETE', credentials: 'same-origin' }).then(check).then(function () {
+      try { ['latu-v2', 'latu-v1'].forEach(function (k) { localStorage.removeItem(k); }); } catch (x) {}
+      location.replace('/');
+    }).catch(function (x) { window.__latuWiping = false; b.disabled = false; b.textContent = 'Kustuta kõik andmed'; alert('Kustutamine ebaõnnestus: ' + (x && x.message || x)); });
+  }, true);
+
   // Logout: clear the local cache, then end the session on the server.
   document.addEventListener('click', function (e) {
     var b = e.target && e.target.closest && e.target.closest('[data-act="logout"]');
@@ -92,7 +112,7 @@
   }, true);
 
   // Flush unsaved changes when the tab is hidden.
-  function flushNow() { try { if (window.__latuFlush) window.__latuFlush(); } catch (x) {} }
+  function flushNow() { if (window.__latuWiping) return; try { if (window.__latuFlush) window.__latuFlush(); } catch (x) {} }
   window.addEventListener('pagehide', flushNow);
   document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushNow(); });
 })();

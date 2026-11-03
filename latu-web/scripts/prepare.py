@@ -20,10 +20,17 @@ rep("Hindamine töötab claude.ai-s sisse logituna.", "Hindamine vajab AI seadis
 rep("'Claude kasutamine on selle lehe jaoks keelatud.'", "'AI pole seadistatud.'")
 rep("}[code] || 'Vastus ebaõnnestus. Proovi uuesti.';", "}[code] || ('Vastus ebaõnnestus' + (e && e.message && e.message !== code ? ' (' + e.message + ')' : '') + '. Proovi uuesti.');")
 rep("e && e.code === 'rate_limited' ? 'Limiit täis, proovi hiljem.' : 'Hindamine ebaõnnestus. Proovi uuesti.'", "e && e.code === 'rate_limited' ? 'Limiit täis, proovi hiljem.' : 'Hindamine ebaõnnestus' + (e && e.message && e.message !== e.code ? ' (' + e.message + ')' : '') + '. Proovi uuesti.'")
+# roller ski naming: "rulluisk" (roller skate) -> "rullsuusk" (roller ski) in visible text
+src = src.replace("M: { A: 'rulluisk', B: 'rulluisk'", "M: { A: 'rullsuusk', B: 'rullsuusk'").replace("M: { A: 'rulluisk'", "M: { A: 'rullsuusk'")
+rep("if (/rulluisk/.test(n)) return 'rulluisk';", "if (/rullsuusk|rulluisk/.test(n)) return 'rulluisk';")
+rep("rulluisk: 'Rulluisk',", "rulluisk: 'Rullsuusk',")
+src = src.replace("Rulluisk ja suusaimitatsioon", "Rullsuusk ja suusaimitatsioon").replace("'Rulluisk, jooks ja suusaimitatsioon", "'Rullsuusk, jooks ja suusaimitatsioon")
+src = src.replace("rulluiskadel", "rullsuuskadel")
+src = src.replace("Rulluisu 10 km", "Rullsuusa 10 km").replace("nt Kerge rulluisk", "nt Kerge rullsuusk")
 rep('<span class="verb">v9</span>', '<span class="verb">v10</span>')
 # account card above backup card
 rep("""  h += '<section class="card"><div class="card-h"><h2>Varukoopia</h2></div>""",
-    """  h += '<section class="card"><div class="card-h"><h2>Konto</h2></div><p style="margin:0">Sisse logitud: <b>' + esc((window.LATU_USER || {}).email || '') + '</b>. Andmed salvestuvad serverisse ja on alles igas seadmes, kuhu sisse logid.</p><div class="btns"><button type="button" class="btn sm" data-act="logout">Logi välja</button></div></section>';
+    """  h += '<section class="card"><div class="card-h"><h2>Konto</h2></div><p style="margin:0">Sisse logitud: <b>' + esc((window.LATU_USER || {}).email || '') + '</b>. Andmed salvestuvad serverisse ja on alles igas seadmes, kuhu sisse logid.</p><div class="btns"><button type="button" class="btn sm" data-act="logout">Logi välja</button><button type="button" class="btn sm danger" data-act="wipe">Kustuta kõik andmed</button></div></section>';
   h += '<section class="card"><div class="card-h"><h2>Varukoopia</h2></div>""")
 rep("function save() { resetCache();", "window.__latuFlush = function () { if (persist.timer) { clearTimeout(persist.timer); persist.timer = null; flush(); } };\nfunction save() { resetCache();")
 rep('<meta name="claude:viewport-fit-sides" content="cover">\n', '')

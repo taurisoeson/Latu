@@ -710,17 +710,17 @@ var TYPES = {
 var CLS = { low: 'Kerge', mid: 'Kesk', high: 'Kõrge', str: 'Jõud', rest: 'Puhkus' };
 var W3 = [0.7, 1.5, 2.0];
 var RPEF = [0, 0.4, 0.55, 0.7, 0.85, 1.1, 1.4, 1.7, 2.0, 2.3, 2.6];
-var SPORTS = { rulluisk: 'Rulluisk', jooks: 'Jooks', suusk: 'Suusk', ratas: 'Ratas', jou: 'Jõud', ujumine: 'Ujumine', muu: 'Muu' };
+var SPORTS = { rulluisk: 'Rullsuusk', jooks: 'Jooks', suusk: 'Suusk', ratas: 'Ratas', jou: 'Jõud', ujumine: 'Ujumine', muu: 'Muu' };
 var SNOW = { A: 'suusk', B: 'suusk', C: 'jooks' };
 var PH = [
-  { id: 'p1', n: 'Sügisene ettevalmistus', s: 'Sügis', a: 1, b: 5, k: 'base', M: { A: 'rulluisk', B: 'rulluisk', C: 'jooks' }, base: 1, pat: [0.95, 1, 1.05, 0.7], d: [90, 5, 5], f: 'Rulluisk, jooks ja suusaimitatsioon, üleminek lumele. Aeroobne maht püsib, kvaliteeti kaks päeva nädalas.' },
+  { id: 'p1', n: 'Sügisene ettevalmistus', s: 'Sügis', a: 1, b: 5, k: 'base', M: { A: 'rullsuusk', B: 'rullsuusk', C: 'jooks' }, base: 1, pat: [0.95, 1, 1.05, 0.7], d: [90, 5, 5], f: 'Rullsuusk, jooks ja suusaimitatsioon, üleminek lumele. Aeroobne maht püsib, kvaliteeti kaks päeva nädalas.' },
   { id: 'p2', n: 'Hooaja algus', s: 'Algus', a: 6, b: 9, k: 'season', M: SNOW, base: 0.9, pat: [1, 1, 0.7], d: [86, 6, 8], f: 'Esimesed võistlused lumel. Maht langeb veidi, intensiivsus tuleb startidest ja ühest kvaliteettrennist.' },
   { id: 'p3', n: 'Põhihooaeg', s: 'Põhihooaeg', a: 10, b: 17, k: 'season', M: SNOW, base: 0.85, pat: [1, 1.05, 0.7], d: [86, 6, 8], f: 'Peavõistlused. Hoiame kvaliteeti ja värskust: vähem mahtu, rohkem taastumist enne starte.' },
   { id: 'p4', n: 'Hooaja lõpp', s: 'Lõpp', a: 18, b: 22, k: 'season', M: SNOW, base: 0.8, pat: [1, 0.85, 0.7], d: [86, 6, 8], f: 'Hoia vorm lõpuvõistlusteks, siis kontrollitud mahu langus.' },
   { id: 'p5', n: 'Taastumine', s: 'Taast.', a: 23, b: 25, k: 'rec', M: { A: 'vaba liikumine', B: 'vaba liikumine', C: 'vaba liikumine' }, base: 1, pat: [0.3, 0.45, 0.6], d: [100, 0, 0], f: 'Aktiivne puhkus: ujumine, ratas, matk. Vähe struktuuri, palju und.' },
-  { id: 'p6', n: 'Üldine baas', s: 'Üldine baas', a: 26, b: 38, k: 'base', M: { A: 'rulluisk', B: 'jooks ülesmäge', C: 'ratas' }, base: 1, pat: [1, 1.06, 1.12, 0.7], d: [92, 4, 4], f: 'Aasta suurim aeroobne alus: palju kerget mahtu, maksimaaljõud, tehnika.' },
-  { id: 'p7', n: 'Spetsiifiline ettevalmistus', s: 'Spetsiifiline', a: 39, b: 48, k: 'base', M: { A: 'rulluisk', B: 'suusaimitatsioon', C: 'jooks' }, base: 1.05, pat: [1, 1.04, 1.08, 0.7], d: [88, 5, 7], f: 'Rulluisk ja suusaimitatsioon, rohkem lävi- ja intervalltööd, jõu säilitus.' },
-  { id: 'p8', n: 'Eelhooaeg', s: 'Eelhooaeg', a: 49, b: 52, k: 'base', M: { A: 'rulluisk', B: 'rulluisk', C: 'jooks' }, base: 1, pat: [1, 1.05, 1.1, 0.7], d: [88, 5, 7], f: 'Kvaliteeti rohkem, esimesed lumetreeningud ja testid.' }
+  { id: 'p6', n: 'Üldine baas', s: 'Üldine baas', a: 26, b: 38, k: 'base', M: { A: 'rullsuusk', B: 'jooks ülesmäge', C: 'ratas' }, base: 1, pat: [1, 1.06, 1.12, 0.7], d: [92, 4, 4], f: 'Aasta suurim aeroobne alus: palju kerget mahtu, maksimaaljõud, tehnika.' },
+  { id: 'p7', n: 'Spetsiifiline ettevalmistus', s: 'Spetsiifiline', a: 39, b: 48, k: 'base', M: { A: 'rullsuusk', B: 'suusaimitatsioon', C: 'jooks' }, base: 1.05, pat: [1, 1.04, 1.08, 0.7], d: [88, 5, 7], f: 'Rullsuusk ja suusaimitatsioon, rohkem lävi- ja intervalltööd, jõu säilitus.' },
+  { id: 'p8', n: 'Eelhooaeg', s: 'Eelhooaeg', a: 49, b: 52, k: 'base', M: { A: 'rullsuusk', B: 'rullsuusk', C: 'jooks' }, base: 1, pat: [1, 1.05, 1.1, 0.7], d: [88, 5, 7], f: 'Kvaliteeti rohkem, esimesed lumetreeningud ja testid.' }
 ];
 var phaseOf = function (w) { return PH.filter(function (p) { return w >= p.a - 1 && w <= p.b - 1; })[0]; };
 var sess = function (t, n, m) { return { type: t, name: n, min: m }; };
@@ -769,7 +769,7 @@ var METRICS = [
   { k: 'k5', l: '5 km jooks', u: '', t: 'time', better: 'low' },
   { k: 'vo2', l: 'VO₂max', u: 'ml/kg/min', t: 'num', better: 'high' },
   { k: 'kukk', l: 'Kükk 1RM', u: 'kg', t: 'num', better: 'high' },
-  { k: 'rul', l: 'Rulluisu 10 km', u: '', t: 'time', better: 'low' },
+  { k: 'rul', l: 'Rullsuusa 10 km', u: '', t: 'time', better: 'low' },
   { k: 'fisd', l: 'FIS distantsipunktid', u: 'p', t: 'num', better: 'low' },
   { k: 'fiss', l: 'FIS sprindipunktid', u: 'p', t: 'num', better: 'low' }
 ];
@@ -865,7 +865,7 @@ var dayEntries = function (n) { return idx().byDate[toISO(n)] || []; };
 function spOf(name, type) {
   var n = (name || '').toLowerCase();
   if (type === 'joud' || /jõu|jou/.test(n)) return 'jou';
-  if (/rulluisk/.test(n)) return 'rulluisk';
+  if (/rullsuusk|rulluisk/.test(n)) return 'rulluisk';
   if (/suus/.test(n)) return 'suusk';
   if (/ratas/.test(n)) return 'ratas';
   if (/jooks/.test(n)) return 'jooks';
@@ -1554,7 +1554,7 @@ function lfHTML(ctx) {
   return '<div class="lf" id="lf"><h3>' + (isNew ? 'Lisa tegelik treening' : 'Täpsusta treeningut') + '</h3><div class="lfgrid">' +
     '<label>Kuupäev<input id="lf-d" type="date" value="' + e.d + '"></label>' +
     '<label>Spordiala<select id="lf-sp">' + spo + '</select></label>' +
-    '<label class="w2">Nimi<input id="lf-n" type="text" maxlength="60" value="' + esc(e.n) + '" placeholder="nt Kerge rulluisk"></label>' +
+    '<label class="w2">Nimi<input id="lf-n" type="text" maxlength="60" value="' + esc(e.n) + '" placeholder="nt Kerge rullsuusk"></label>' +
     '<label>Kestus (min)<input id="lf-m" type="number" min="1" max="600" value="' + (e.m || '') + '"></label>' +
     '<label>Pingutus (RPE 1–10)<select id="lf-r">' + rpo + '</select></label>' +
     '<label>Madal (min)<input id="lf-z0" type="number" min="0" max="600" value="' + z[0] + '"></label>' +
@@ -1847,7 +1847,7 @@ function modalHTML() {
   h += '<div class="field"><div class="flabel"><span>Kuidas tundus?</span><span class="meta" id="md-fl">' + (M.fl ? FACEL[M.fl - 1] : '') + '</span></div><div class="faces" role="group" aria-label="Enesetunne">' +
     FACES.map(function (f, i) { return '<button type="button" data-act="mod-feel" data-v="' + (i + 1) + '" class="' + (M.fl === i + 1 ? 'on' : '') + '" aria-pressed="' + (M.fl === i + 1) + '" aria-label="' + FACEL[i] + '">' + f + '</button>'; }).join('') + '</div></div>';
   h += '<div class="field"><div class="flabel"><label for="md-r">Pingutus (RPE)</label><span class="meta" id="md-rv"></span></div><input id="md-r" type="range" min="0" max="10" step="1" value="' + (e.r || 0) + '"><div class="fcap"><span>pole sisestatud</span><span>maksimaalne</span></div></div>';
-  h += '<div class="lfgrid"><label class="w2">Nimi<input id="md-n" type="text" maxlength="60" value="' + esc(e.n) + '" placeholder="nt Kerge rulluisk"></label><label>Spordiala<select id="md-sp">' + spo + '</select></label><label>Kuupäev<input id="md-d" type="date" value="' + e.d + '"></label>' +
+  h += '<div class="lfgrid"><label class="w2">Nimi<input id="md-n" type="text" maxlength="60" value="' + esc(e.n) + '" placeholder="nt Kerge rullsuusk"></label><label>Spordiala<select id="md-sp">' + spo + '</select></label><label>Kuupäev<input id="md-d" type="date" value="' + e.d + '"></label>' +
     '<label class="w2">Märkus<textarea id="md-t" rows="2" maxlength="300" class="ta">' + esc(e.t || '') + '</textarea></label></div>';
   if (plan) h += '<details class="pdet"><summary>Muuda plaanitud trenni</summary><div class="lfgrid"><label>Tüüp<select id="md-pt">' + topts + '</select></label><label>Kestus (min)<input id="md-pm" type="number" min="0" max="480" step="5" value="' + plan.min + '"></label><label class="w2">Nimi<input id="md-pn" type="text" maxlength="60" value="' + esc(plan.name) + '"></label></div><p class="note">Plaani muudatus salvestatakse nädalaplaani, kui vajutad Salvesta.</p><div class="btns"><button type="button" class="btn sm" data-act="bd-edit" data-iso="' + M.iso + '" data-sid="' + esc(plan.id) + '">Ehita struktuur blokkidest</button></div></details>';
   h += '</div><footer class="mf">' + (M.ent ? '<button type="button" class="btn danger" data-act="mod-del" style="margin-right:auto">Kustuta logi</button>' : '') + '<button type="button" class="btn" data-act="mod-close">Tühista</button><button type="button" class="btn primary" data-act="mod-save">Salvesta ja sulge</button></footer></div></div>';
@@ -2003,7 +2003,7 @@ function viewYear() {
     '<p class="note">A-võistluse nädalal langeb maht umbes 25% ja eelmisel nädalal 15%, B-võistluse nädalal 10%, C-võistluse nädalal 5%. Sihtvõistluse kuupäev on tühi, kuni treeneri või liidu ajakava on kinnitatud.</p></section>';
   var pr = S.profile, im = UI.imp, ic = im ? impCounts(im.st) : null;
   h += '<section class="card"><div class="card-h"><h2>Profiil</h2></div><div class="lfgrid" style="margin-top:0"><label>Pikkus (cm)<input id="p-h" type="number" min="120" max="230" value="' + pr.h + '"></label><label>Sünnikuupäev<input id="p-born" type="date" value="' + esc(pr.born) + '"></label><label>Sugu (energiavalemi jaoks)<select id="p-sex"><option value="m"' + (pr.sex !== 'f' ? ' selected' : '') + '>Mees</option><option value="f"' + (pr.sex === 'f' ? ' selected' : '') + '>Naine</option></select></label></div><p class="note">Kasutatakse energia- ja valgusihtide hinnangus. Kaalu sisestad Toit vaates.</p></section>';
-  h += '<section class="card"><div class="card-h"><h2>Konto</h2></div><p style="margin:0">Sisse logitud: <b>' + esc((window.LATU_USER || {}).email || '') + '</b>. Andmed salvestuvad serverisse ja on alles igas seadmes, kuhu sisse logid.</p><div class="btns"><button type="button" class="btn sm" data-act="logout">Logi välja</button></div></section>';
+  h += '<section class="card"><div class="card-h"><h2>Konto</h2></div><p style="margin:0">Sisse logitud: <b>' + esc((window.LATU_USER || {}).email || '') + '</b>. Andmed salvestuvad serverisse ja on alles igas seadmes, kuhu sisse logid.</p><div class="btns"><button type="button" class="btn sm" data-act="logout">Logi välja</button><button type="button" class="btn sm danger" data-act="wipe">Kustuta kõik andmed</button></div></section>';
   h += '<section class="card"><div class="card-h"><h2>Varukoopia</h2></div><p style="margin:0">Lae kõik andmed (treeningud, toit, kaal, seisund, plaani muudatused, treeneri vestlus) ühe failina alla või taasta need failist.</p><div class="btns"><button type="button" class="btn primary sm" data-act="backup-export">Lae varukoopia alla</button><label class="btn sm" style="cursor:pointer">Taasta failist<input id="imp-file" type="file" accept=".json,application/json" hidden></label></div>' +
     (UI.impErr ? '<div class="banner">' + esc(UI.impErr) + '</div>' : '') +
     (im ? '<div class="banner"><span>Fail ' + esc(im.name) + ': ' + ic.log + ' treeningut, ' + ic.food + ' toidupäeva, ' + ic.body + ' kaalupäeva, ' + ic.chk + ' seisundit. Import ühendab andmed ja kirjutab kattuvad kuupäevad üle.</span><span class="dacts"><button type="button" class="btn primary sm" data-act="imp-ok">Impordi</button><button type="button" class="btn sm" data-act="imp-no">Tühista</button></span></div>' : '') + '</section>';
@@ -2218,7 +2218,7 @@ var LVN = ['kerge', 'lävi', 'kõrge'];
 var ISC = [['I1', 'Väga kerge', 55, 72, '< 1,5'], ['I2', 'Kerge', 72, 82, '1–2'], ['I3', 'Keskmine', 82, 87, '1,5–3,5'], ['I4', 'Raske', 87, 92, '–'], ['I5', 'Väga raske', 92, 100, '–']];
 var TESTS = [
   { k: 'k3', l: '3 km jooks', m: 'k3' }, { k: 'k5', l: '5 km jooks', m: 'k5' }, { k: 'vo2', l: 'VO₂max', m: 'vo2' },
-  { k: 'kukk', l: 'Kükk 1RM', m: 'kukk' }, { k: 'rul', l: 'Rulluisu 10 km aeg', m: 'rul' }, { k: 'lakt', l: 'Laktaaditest', m: null }
+  { k: 'kukk', l: 'Kükk 1RM', m: 'kukk' }, { k: 'rul', l: 'Rullsuusa 10 km aeg', m: 'rul' }, { k: 'lakt', l: 'Laktaaditest', m: null }
 ];
 var testDef = function (k) { return TESTS.filter(function (x) { return x.k === k; })[0] || TESTS[0]; };
 var PRIO = { target: 'A', race: 'B', c: 'C' };
@@ -3105,7 +3105,7 @@ var QUOTES = [
   { q: 'Täna ei pea olema parim. Pead olema järjepidev.', a: 'Latu' },
   { q: 'Maht ehitab vundamendi, kvaliteet lõikab tipu.', a: 'Latu' },
   { q: 'Uni on sinu odavaim ja tugevaim treeningvahend.', a: 'Latu' },
-  { q: 'Suusataja talv algab juba suvel, rulluiskadel.', a: 'Latu' },
+  { q: 'Suusataja talv algab juba suvel, rullsuuskadel.', a: 'Latu' },
   { q: 'Kannatlikkus on samuti treeningtüüp. Harjuta seda iga päev.', a: 'Latu' },
   { q: 'Võrdle ennast ainult eilse endaga.', a: 'Latu' },
   { q: 'Puhkepäev on treening, mille nimi on taastumine.', a: 'Latu' },
