@@ -1344,7 +1344,7 @@ function coachSend(q) {
       sampling_disabled: 'AI treener pole praegu saadaval.',
       prompt_too_large: 'Andmeid on liiga palju. Tühjenda vestlus ja proovi uuesti.',
       refused: 'AI ei vastanud sellele küsimusele.'
-    }[code] || 'Vastus ebaõnnestus. Proovi uuesti.';
+    }[code] || ('Vastus ebaõnnestus' + (e && e.message && e.message !== code ? ' (' + e.message + ')' : '') + '. Proovi uuesti.');
     if (e && e.text && code !== 'refused') { done(e.text, code === 'cancelled' ? 'peatatud' : 'katkes'); if (code !== 'cancelled') { UI.coachErr = msg; render(); } return; }
     UI.coachBusy = false; UI.streamText = ''; UI.coachErr = code === 'cancelled' ? '' : msg; render();
   });
@@ -2573,7 +2573,7 @@ function estGo() {
     });
     UI.est = items.length ? { items: items, note: String((r && r.note) || '').slice(0, 200) } : { err: 'Hinnangut ei tulnud. Proovi täpsemat kirjeldust.' };
     render();
-  }).catch(function (e) { UI.est = { err: e && e.code === 'not_granted' ? 'AI pole seadistatud.' : e && e.code === 'rate_limited' ? 'Limiit täis, proovi hiljem.' : 'Hindamine ebaõnnestus. Proovi uuesti.' }; render(); });
+  }).catch(function (e) { UI.est = { err: e && e.code === 'not_granted' ? 'AI pole seadistatud.' : e && e.code === 'rate_limited' ? 'Limiit täis, proovi hiljem.' : 'Hindamine ebaõnnestus' + (e && e.message && e.message !== e.code ? ' (' + e.message + ')' : '') + '. Proovi uuesti.' }; render(); });
 }
 
 /* --- ülevaated --- */

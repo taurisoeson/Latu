@@ -18,6 +18,8 @@ rep("Hinda Claude’iga", "Hinda AI-ga")
 rep("Claude’i hinnang. Kontrolli", "AI hinnang. Kontrolli")
 rep("Hindamine töötab claude.ai-s sisse logituna.", "Hindamine vajab AI seadistust (GEMINI_API_KEY).")
 rep("'Claude kasutamine on selle lehe jaoks keelatud.'", "'AI pole seadistatud.'")
+rep("}[code] || 'Vastus ebaõnnestus. Proovi uuesti.';", "}[code] || ('Vastus ebaõnnestus' + (e && e.message && e.message !== code ? ' (' + e.message + ')' : '') + '. Proovi uuesti.');")
+rep("e && e.code === 'rate_limited' ? 'Limiit täis, proovi hiljem.' : 'Hindamine ebaõnnestus. Proovi uuesti.'", "e && e.code === 'rate_limited' ? 'Limiit täis, proovi hiljem.' : 'Hindamine ebaõnnestus' + (e && e.message && e.message !== e.code ? ' (' + e.message + ')' : '') + '. Proovi uuesti.'")
 rep('<span class="verb">v9</span>', '<span class="verb">v10</span>')
 # account card above backup card
 rep("""  h += '<section class="card"><div class="card-h"><h2>Varukoopia</h2></div>""",
