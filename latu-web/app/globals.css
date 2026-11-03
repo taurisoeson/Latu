@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Familjen Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --color-night: #0f1a24;
+  --color-fjord: #6fa8c9;
+  --color-snow: #eef3f7;
+}
+
+html, body { background: #0f1a24; }
