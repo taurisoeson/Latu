@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { currentUser, SB_URL } from '@/lib/supabase';
 import LoginForm from './form';
+import { LOGIN_DAYS } from '@/lib/session';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +21,7 @@ export default async function LoginPage() {
           </div>
           <p className="mt-3 text-[15px] leading-relaxed text-snow/70">Treeningplaan, päevik ja analüüs ühes kohas. Logi sisse, et jätkata.</p>
         </div>
-        {SB_URL ? <LoginForm allowSignup={process.env.ALLOW_SIGNUP === '1'} /> : (
+        {SB_URL ? <LoginForm allowSignup={process.env.ALLOW_SIGNUP === '1'} days={LOGIN_DAYS} /> : (
           <p className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm">Supabase pole veel seadistatud. Lisa keskkonnamuutujad NEXT_PUBLIC_SUPABASE_URL ja NEXT_PUBLIC_SUPABASE_ANON_KEY.</p>
         )}
       </div>

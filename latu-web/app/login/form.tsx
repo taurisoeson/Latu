@@ -4,7 +4,7 @@ import { signIn, signUp, type State } from './actions';
 
 const field = 'w-full rounded-xl border border-white/12 bg-white/[.06] px-4 py-3 text-[15px] text-snow placeholder:text-snow/35 outline-none transition focus:border-fjord focus:bg-white/[.09]';
 
-export default function LoginForm({ allowSignup }: { allowSignup: boolean }) {
+export default function LoginForm({ allowSignup, days }: { allowSignup: boolean; days: number }) {
   const [mode, setMode] = useState<'in' | 'up'>('in');
   // Signed out: drop this browser's cached copy of the training data.
   useEffect(() => { try { ['latu-v2', 'latu-v1', 'latu-owner'].forEach((k) => localStorage.removeItem(k)); } catch {} }, []);
@@ -25,6 +25,7 @@ export default function LoginForm({ allowSignup }: { allowSignup: boolean }) {
       <button disabled={pending} className="w-full rounded-xl bg-fjord px-4 py-3 font-semibold text-night transition hover:brightness-110 disabled:opacity-60">
         {pending ? 'Oota…' : mode === 'in' ? 'Logi sisse' : 'Loo konto'}
       </button>
+      <p className="text-center text-xs text-snow/45">See seade jätab sind {days} päevaks meelde.</p>
       {allowSignup && (
         <button type="button" onClick={() => setMode(mode === 'in' ? 'up' : 'in')} className="w-full pt-1 text-sm text-snow/60 hover:text-snow">
           {mode === 'in' ? 'Pole kontot? Loo konto' : 'Mul on konto, logi sisse'}

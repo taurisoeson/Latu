@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { SB_COOKIE_OPTS } from './session';
 
 export const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 export const SB_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || '';
@@ -7,6 +8,7 @@ export const SB_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.N
 export async function supabase() {
   const store = await cookies();
   return createServerClient(SB_URL, SB_KEY, {
+    cookieOptions: SB_COOKIE_OPTS,
     cookies: {
       getAll: () => store.getAll(),
       setAll: (list) => {

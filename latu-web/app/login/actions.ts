@@ -1,5 +1,7 @@
 'use server';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { AUTH_AT, AUTH_AT_OPTS } from '@/lib/session';
 import { supabase } from '@/lib/supabase';
 
 export type State = { error?: string; info?: string; email?: string };
@@ -19,6 +21,7 @@ export async function signIn(_: State, form: FormData): Promise<State> {
   const sb = await supabase();
   const { error } = await sb.auth.signInWithPassword({ email, password });
   if (error) return { error: msg(error.message), email };
+  (await cookies()).set(AUTH_AT, String(Date.now()), AUTH_AT_OPTS);
   redirect('/');
 }
 
@@ -29,6 +32,6 @@ export async function signUp(_: State, form: FormData): Promise<State> {
   const sb = await supabase();
   const { data, error } = await sb.auth.signUp({ email, password });
   if (error) return { error: msg(error.message), email };
-  if (data.session) redirect('/');
+  if (data.session) { (await cookies()).set(AUTH_AT, String(Date.now()), AUTH_AT_OPTS); redirect('/'); }
   return { email, info: 'Konto loodud. Kinnita e-post postkastis olevast lingist ja logi siis sisse.' };
 }
